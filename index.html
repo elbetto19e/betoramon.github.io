@@ -48,12 +48,16 @@
             z-index: 2;
         }
 
-        /* Brillo de plástico del vinilo */
+        /* Brillo de plástico y SURCOS del vinilo */
         .brillo-vinilo {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             border-radius: 50%;
-            background: conic-gradient(from 45deg, transparent 0deg, rgba(255,255,255,0.15) 45deg, transparent 90deg, transparent 180deg, rgba(255,255,255,0.15) 225deg, transparent 270deg);
+            background: 
+                /* El reflejo de luz del plástico */
+                conic-gradient(from 45deg, transparent 0deg, rgba(255,255,255,0.15) 45deg, transparent 90deg, transparent 180deg, rgba(255,255,255,0.15) 225deg, transparent 270deg),
+                /* Las rayitas / surcos del vinilo */
+                repeating-radial-gradient(circle, transparent, transparent 3px, rgba(0,0,0,0.4) 4px, transparent 5px);
             pointer-events: none;
             z-index: 1;
         }
@@ -81,22 +85,22 @@
     <h2>EFRA & Beto Ramon</h2>
     <h1>mientras tanto</h1>
     
-    <!-- Aquí armamos el disco -->
+    <!-- Aquí armamos el disco con el nuevo efecto -->
     <div class="disco-container" id="disco">
         <img src="portada.jpeg" alt="Portada Mientras Tanto" class="portada">
         <div class="hoyo-centro"></div>
         <div class="brillo-vinilo"></div>
     </div>
     
-    <p>escucha un preview:) </p>
+    <p>Te regalo un preview:</p>
     <audio id="reproductor" controls>
         <source src="preview.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Tus botones con los íconos (YA CON TUS LINKS) -->
-    <a href="https://open.spotify.com/track/6OxHmhvxjMebJfRRqI6Uqq" class="boton"><i class="fab fa-spotify fa-lg"></i> escuchala completa en Spotify:) </a>
-    <a href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz" class="boton ig"><i class="fab fa-instagram fa-lg"></i> instagram EFRA</a>
-    <a href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr" class="boton ig"><i class="fab fa-instagram fa-lg"></i> instagram Beto Ramon</a>
+    <!-- Tus botones con los íconos reales -->
+    <a href="https://open.spotify.com/track/6OxHmhvxjMebJfRRqI6Uqq" class="boton"><i class="fab fa-spotify fa-lg"></i Escuchala completa en Spotify</a>
+    <a href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz" class="boton ig"><i class="fab fa-instagram fa-lg"></i> Sigue a EFRA en Instagram</a>
+    <a href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr" class="boton ig"><i class="fab fa-instagram fa-lg"></i> Sigue a Beto en Instagram</a>
 
     <script>
         var audio = document.getElementById("reproductor");
