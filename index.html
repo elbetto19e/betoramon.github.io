@@ -1,71 +1,107 @@
 <!DOCTYPE html>
+
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>mientras tanto - EFRA & Beto Ramon</title>
 
     <!-- Vista previa al compartir -->
+
     <meta property="og:title" content="mientras tanto - EFRA & Beto Ramon">
+
     <meta property="og:description" content="Te regalo un preview.">
+
     <meta property="og:image" content="https://elbetto19e.github.io/betoramon.github.io/portada.jpeg">
+
     <meta property="og:url" content="https://elbetto19e.github.io/betoramon.github.io/">
+
     <meta property="og:type" content="music.song">
 
     <!-- Fuentes e iconos -->
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
 
         /* =========================
+
            CONFIGURACIÓN GENERAL
+
         ========================= */
 
         * {
+
             box-sizing: border-box;
+
         }
 
         html,
+
         body {
+
             margin: 0;
+
             padding: 0;
+
             min-height: 100%;
+
         }
 
         body {
-            background-color: #111;
-            color: #fff;
-            font-family: 'Montserrat', sans-serif;
-            text-align: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
 
+            background-color: #111;
+
+            color: #fff;
+
+            font-family: 'Montserrat', sans-serif;
+
+            text-align: center;
+
+            padding: 20px;
+
+            overflow-x: hidden;
+
+        }
 
         /* =========================
+
            MENSAJE DE ENTRADA
+
         ========================= */
 
         #mensajeEntrada {
+
             position: fixed;
+
             inset: 0;
 
             width: 100%;
+
             height: 100%;
 
             background: #111;
+
             color: #fff;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
             z-index: 99999;
 
             font-size: 1.2rem;
+
             font-weight: 400;
+
             letter-spacing: 0.5px;
 
             opacity: 1;
@@ -73,83 +109,121 @@
             animation: desaparecerMensaje 2.8s ease-in-out forwards;
 
             pointer-events: none;
+
         }
 
         @keyframes desaparecerMensaje {
 
             0% {
+
                 opacity: 0;
+
             }
 
             20% {
+
                 opacity: 1;
+
             }
 
             65% {
+
                 opacity: 1;
+
             }
 
             100% {
+
                 opacity: 0;
+
                 visibility: hidden;
+
             }
+
         }
 
-
         /* =========================
+
            CONTENIDO PRINCIPAL
+
         ========================= */
 
         #contenido {
+
             opacity: 0;
+
             transform: translateY(15px);
 
             animation: contenidoEntrada 0.9s ease-out 2.2s forwards;
+
         }
 
         @keyframes contenidoEntrada {
 
             from {
+
                 opacity: 0;
+
                 transform: translateY(15px);
+
             }
 
             to {
+
                 opacity: 1;
+
                 transform: translateY(0);
+
             }
+
         }
 
-
         /* =========================
+
            TEXTOS
+
         ========================= */
 
         h2 {
+
             font-weight: 400;
+
             font-size: 1.2rem;
+
             color: #bbb;
+
             margin-top: 5px;
+
             margin-bottom: 5px;
+
         }
 
         h1 {
+
             font-weight: 700;
+
             font-size: 2.5rem;
+
             margin-top: 0;
+
             margin-bottom: 25px;
+
             letter-spacing: -1px;
+
         }
 
-
         /* =========================
+
            DISCO / PORTADA
+
         ========================= */
 
         .disco-container {
+
             position: relative;
 
             width: 250px;
+
             height: 250px;
 
             margin: 0 auto 25px auto;
@@ -157,6 +231,7 @@
             border-radius: 50%;
 
             box-shadow:
+
                 0px 10px 30px rgba(0, 0, 0, 0.9);
 
             border: 8px solid #050505;
@@ -164,31 +239,39 @@
             background-color: #000;
 
             overflow: hidden;
+
         }
 
         img.portada {
+
             width: 100%;
+
             height: 100%;
 
             object-fit: cover;
 
             opacity: 0.9;
+
         }
 
-
         /* =========================
+
            HOYO DEL VINILO
+
         ========================= */
 
         .hoyo-centro {
+
             position: absolute;
 
             top: 50%;
+
             left: 50%;
 
             transform: translate(-50%, -50%);
 
             width: 15px;
+
             height: 15px;
 
             background-color: #111;
@@ -198,19 +281,25 @@
             border: 2px solid #222;
 
             z-index: 2;
+
         }
 
-
         /* =========================
+
            SURCOS Y BRILLO
+
         ========================= */
 
         .brillo-vinilo {
+
             position: absolute;
 
             top: 0;
+
             left: 0;
+
             right: 0;
+
             bottom: 0;
 
             border-radius: 50%;
@@ -218,80 +307,111 @@
             background:
 
                 conic-gradient(
+
                     from 45deg,
+
                     transparent 0deg,
+
                     rgba(255,255,255,0.15) 45deg,
+
                     transparent 90deg,
+
                     transparent 180deg,
+
                     rgba(255,255,255,0.15) 225deg,
+
                     transparent 270deg
+
                 ),
 
                 repeating-radial-gradient(
+
                     circle,
+
                     transparent,
+
                     transparent 3px,
+
                     rgba(0,0,0,0.4) 4px,
+
                     transparent 5px
+
                 );
 
             pointer-events: none;
 
             z-index: 1;
+
         }
 
-
         /* =========================
+
            ANIMACIÓN DEL DISCO
+
         ========================= */
 
         @keyframes girar {
 
             from {
+
                 transform: rotate(0deg);
+
             }
 
             to {
+
                 transform: rotate(360deg);
+
             }
 
         }
 
         .girando {
+
             animation: girar 10s linear infinite;
+
         }
 
-
         /* =========================
+
            TEXTO PREVIEW
+
         ========================= */
 
         p {
+
             margin-top: 5px;
+
             margin-bottom: 10px;
 
             color: #ccc;
 
             font-size: 0.95rem;
+
         }
 
-
         /* =========================
+
            AUDIO
+
         ========================= */
 
         audio {
+
             display: block;
 
             width: 85%;
+
             max-width: 320px;
 
             margin: 0 auto 25px auto;
+
         }
 
-
         /* =========================
+
            BOTONES
+
         ========================= */
 
         .boton {
@@ -299,6 +419,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             gap: 10px;
@@ -312,6 +433,7 @@
             margin: 12px auto;
 
             width: 85%;
+
             max-width: 320px;
 
             text-decoration: none;
@@ -323,39 +445,195 @@
             font-size: 1rem;
 
             transition:
+
                 transform 0.2s ease,
+
                 opacity 0.2s ease;
+
         }
 
         .boton:active {
+
             transform: scale(0.95);
+
         }
 
         .boton:hover {
+
             opacity: 0.9;
+
         }
 
-
         /* =========================
+
            INSTAGRAM
+
         ========================= */
 
         .boton.ig {
 
             background:
+
                 linear-gradient(
+
                     45deg,
+
                     #f09433 0%,
+
                     #e6683c 25%,
+
                     #dc2743 50%,
+
                     #cc2366 75%,
+
                     #bc1888 100%
+
                 );
+
         }
 
+        /* =========================
+
+           SECCIÓN REDES
+
+        ========================= */
+
+        .redes {
+
+            width: 100%;
+
+            max-width: 350px;
+
+            margin: 45px auto 20px auto;
+
+        }
+
+        /* TÍTULO */
+
+        .redes h3 {
+
+            font-size: 1rem;
+
+            font-weight: 400;
+
+            color: #aaa;
+
+            margin: 0 0 28px 0;
+
+            opacity: 0;
+
+            transform: translateY(10px);
+
+            animation:
+
+                aparecerRedes 0.8s ease-out 5s forwards;
+
+        }
+
+        /* CADA RED SOCIAL */
+
+        .red-social {
+
+            margin-bottom: 25px;
+
+            opacity: 0;
+
+            transform: translateY(15px);
+
+            animation:
+
+                aparecerRedSocial 0.7s ease-out forwards;
+
+        }
+
+        /* EFRA */
+
+        .red-social:nth-child(2) {
+
+            animation-delay: 5.6s;
+
+        }
+
+        /* BETO */
+
+        .red-social:nth-child(3) {
+
+            animation-delay: 6.6s;
+
+        }
+
+        /* NOMBRE */
+
+        .red-social span {
+
+            display: block;
+
+            font-size: 0.75rem;
+
+            letter-spacing: 2px;
+
+            color: #888;
+
+            margin-bottom: 8px;
+
+        }
+
+        /* BOTÓN DENTRO DE CADA RED */
+
+        .red-social .boton {
+
+            margin: 0 auto;
+
+        }
+
+        /* ANIMACIÓN TÍTULO */
+
+        @keyframes aparecerRedes {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(10px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+        /* ANIMACIÓN PERSONAS */
+
+        @keyframes aparecerRedSocial {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(15px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
 
         /* =========================
+
            TEXTURA SUTIL DEL FONDO
+
         ========================= */
 
         body::before {
@@ -373,76 +651,117 @@
             z-index: -1;
 
             background-image:
+
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+
         }
 
-
         /* =========================
-           AJUSTE PARA CELULARES
+
+           CELULARES
+
         ========================= */
 
         @media (max-width: 480px) {
 
             body {
+
                 padding: 18px 15px;
+
             }
 
             h1 {
+
                 font-size: 2.2rem;
+
             }
 
             h2 {
+
                 font-size: 1.05rem;
+
             }
 
             .disco-container {
+
                 width: 235px;
+
                 height: 235px;
+
             }
 
             .boton {
+
                 width: 90%;
+
             }
 
         }
 
     </style>
-</head>
 
+</head>
 
 <body>
 
-
     <!-- =========================
+
          MENSAJE INICIAL
+
     ========================= -->
 
     <div id="mensajeEntrada">
+
         Ah… llegaste.
+
     </div>
 
-
     <!-- =========================
-         CONTENIDO DE LA PÁGINA
+
+         CONTENIDO
+
     ========================= -->
 
     <main id="contenido">
 
-        <h2>EFRA & Beto Ramon</h2>
+        <!-- ARTISTA -->
 
-        <h1>mientras tanto</h1>
+        <h2>
 
+            EFRA & Beto Ramon
+
+        </h2>
+
+        <!-- CANCIÓN -->
+
+        <h1>
+
+            mientras tanto
+
+        </h1>
 
         <!-- =========================
-             DISCO
+
+             VINILO
+
         ========================= -->
 
-        <div class="disco-container" id="disco">
+        <div
+
+            class="disco-container"
+
+            id="disco"
+
+        >
 
             <img
+
                 src="portada.jpeg"
+
                 alt="Portada Mientras Tanto"
+
                 class="portada"
+
             >
 
             <div class="hoyo-centro"></div>
@@ -451,41 +770,56 @@
 
         </div>
 
-
         <!-- =========================
+
              PREVIEW
+
         ========================= -->
 
         <p>
+
             Te regalo un preview:
+
         </p>
 
-
         <audio
+
             id="reproductor"
+
             controls
+
             preload="metadata"
+
         >
 
             <source
+
                 src="preview.mp3"
+
                 type="audio/mpeg"
+
             >
 
             Tu navegador no soporta el reproductor de audio.
 
         </audio>
 
-
         <!-- =========================
+
              SPOTIFY
+
         ========================= -->
 
         <a
+
             href="https://open.spotify.com/track/6OxHmhvxjMebJfRRqI6Uqq"
+
             class="boton"
+
             target="_blank"
+
             rel="noopener noreferrer"
+
         >
 
             <i class="fab fa-spotify fa-lg"></i>
@@ -494,60 +828,115 @@
 
         </a>
 
-
         <!-- =========================
-             INSTAGRAM EFRA
+
+             REDES SOCIALES
+
         ========================= -->
 
-        <a
-            href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz"
-            class="boton ig"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+        <section class="redes">
 
-            <i class="fab fa-instagram fa-lg"></i>
+            <!-- TÍTULO -->
 
-            Sigue a EFRA en Instagram
+            <h3>
 
-        </a>
+                Síguenos en nuestras redes
 
+            </h3>
 
-        <!-- =========================
-             INSTAGRAM BETO
-        ========================= -->
+            <!-- =========================
 
-        <a
-            href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr"
-            class="boton ig"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
+                 EFRA
 
-            <i class="fab fa-instagram fa-lg"></i>
+            ========================= -->
 
-            Sigue a Beto en Instagram
+            <div class="red-social">
 
-        </a>
+                <span>
+
+                    EFRA
+
+                </span>
+
+                <a
+
+                    href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz"
+
+                    class="boton ig"
+
+                    target="_blank"
+
+                    rel="noopener noreferrer"
+
+                >
+
+                    <i class="fab fa-instagram fa-lg"></i>
+
+                    Instagram
+
+                </a>
+
+            </div>
+
+            <!-- =========================
+
+                 BETO
+
+            ========================= -->
+
+            <div class="red-social">
+
+                <span>
+
+                    BETO
+
+                </span>
+
+                <a
+
+                    href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr"
+
+                    class="boton ig"
+
+                    target="_blank"
+
+                    rel="noopener noreferrer"
+
+                >
+
+                    <i class="fab fa-instagram fa-lg"></i>
+
+                    Instagram
+
+                </a>
+
+            </div>
+
+        </section>
 
     </main>
 
-
     <!-- =========================
+
          JAVASCRIPT
+
     ========================= -->
 
     <script>
 
         const audio =
+
             document.getElementById("reproductor");
 
         const disco =
+
             document.getElementById("disco");
 
+        /* =========================
 
-        /* Cuando empieza el preview,
-           gira el vinilo */
+           PLAY
+
+        ========================= */
 
         audio.addEventListener("play", function() {
 
@@ -555,9 +944,11 @@
 
         });
 
+        /* =========================
 
-        /* Cuando pausas,
-           deja de girar */
+           PAUSE
+
+        ========================= */
 
         audio.addEventListener("pause", function() {
 
@@ -565,9 +956,11 @@
 
         });
 
+        /* =========================
 
-        /* Cuando termina,
-           deja de girar */
+           TERMINA
+
+        ========================= */
 
         audio.addEventListener("ended", function() {
 
@@ -577,6 +970,6 @@
 
     </script>
 
-
 </body>
+
 </html>
