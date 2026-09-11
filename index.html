@@ -12,111 +12,431 @@
     <meta property="og:url" content="https://elbetto19e.github.io/betoramon.github.io" />
     <meta property="og:type" content="music.song" />
 
-    <!-- Aquí importamos la fuente nueva y los logos de las redes -->
+    <!-- Fuente y logos de redes -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        body { background-color: #111; color: #fff; font-family: 'Montserrat', sans-serif; text-align: center; padding: 20px; }
-        
-        h2 { font-weight: 400; font-size: 1.2rem; color: #bbb; margin-bottom: 5px; }
-        h1 { font-weight: 700; font-size: 2.5rem; margin-top: 0; letter-spacing: -1px; }
 
-        /* Contenedor del disco con borde grueso y sombra */
+    <style>
+
+        /* =========================
+           ESTILO GENERAL
+        ========================= */
+
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+
+            /* Animación general de entrada */
+            animation: contenidoEntrada 0.9s ease-out 1.9s both;
+        }
+
+        /* Textura / grano muy sutil */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.08;
+
+            background-image:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(255,255,255,0.15) 0 1px,
+                    transparent 1px
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(255,255,255,0.12) 0 1px,
+                    transparent 1px
+                );
+
+            background-size: 4px 4px, 6px 6px;
+        }
+
+        /* =========================
+           MENSAJE DE ENTRADA
+        ========================= */
+
+        #mensajeEntrada {
+            position: fixed;
+            inset: 0;
+            background-color: #111;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 9999;
+
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+
+            animation: mensajeEntrada 2.2s ease forwards;
+        }
+
+        @keyframes mensajeEntrada {
+
+            0% {
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            65% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        /* =========================
+           ANIMACIÓN DEL CONTENIDO
+        ========================= */
+
+        @keyframes contenidoEntrada {
+
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        h2 {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #bbb;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-top: 0;
+            letter-spacing: -1px;
+        }
+
+        /* =========================
+           DISCO
+        ========================= */
+
         .disco-container {
             position: relative;
             width: 250px;
             height: 250px;
             margin: 0 auto 25px auto;
             border-radius: 50%;
+
             box-shadow: 0px 10px 30px rgba(0,0,0,0.9);
-            border: 8px solid #050505; 
+
+            border: 8px solid #050505;
+
             background-color: #000;
+
             overflow: hidden;
         }
-        
+
         /* Tu portada de fondo */
+
         img.portada {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.9; 
+            opacity: 0.9;
         }
 
-        /* El hoyito del centro del disco */
+        /* Hoyito del centro del disco */
+
         .hoyo-centro {
             position: absolute;
+
             top: 50%;
             left: 50%;
+
             transform: translate(-50%, -50%);
+
             width: 15px;
             height: 15px;
+
             background-color: #111;
+
             border-radius: 50%;
+
             border: 2px solid #222;
+
             z-index: 2;
         }
 
-        /* Brillo de plástico y SURCOS del vinilo */
+        /* Brillo y surcos del vinilo */
+
         .brillo-vinilo {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+
             border-radius: 50%;
-            background: 
-                /* El reflejo de luz del plástico */
-                conic-gradient(from 45deg, transparent 0deg, rgba(255,255,255,0.15) 45deg, transparent 90deg, transparent 180deg, rgba(255,255,255,0.15) 225deg, transparent 270deg),
-                /* Las rayitas / surcos del vinilo */
-                repeating-radial-gradient(circle, transparent, transparent 3px, rgba(0,0,0,0.4) 4px, transparent 5px);
+
+            background:
+
+                conic-gradient(
+                    from 45deg,
+                    transparent 0deg,
+                    rgba(255,255,255,0.15) 45deg,
+                    transparent 90deg,
+                    transparent 180deg,
+                    rgba(255,255,255,0.15) 225deg,
+                    transparent 270deg
+                ),
+
+                repeating-radial-gradient(
+                    circle,
+                    transparent,
+                    transparent 3px,
+                    rgba(0,0,0,0.4) 4px,
+                    transparent 5px
+                );
+
             pointer-events: none;
+
             z-index: 1;
         }
 
-        /* Rotación más lenta (10 segundos) */
+        /* =========================
+           ROTACIÓN DEL DISCO
+        ========================= */
+
         @keyframes girar {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        .girando {
-            animation: girar 10s linear infinite; 
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+
         }
 
-        /* Diseño de botones pro */
-        .boton { display: flex; align-items: center; justify-content: center; gap: 10px; background: #1DB954; color: white; padding: 15px; margin: 12px auto; width: 85%; max-width: 320px; text-decoration: none; border-radius: 30px; font-weight: bold; font-size: 1rem; transition: transform 0.2s; }
-        .boton:active { transform: scale(0.95); }
-        
-        /* Gradiente real de Instagram */
-        .boton.ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-        
-        audio { margin-bottom: 25px; width: 85%; max-width: 320px; }
+        .girando {
+            animation: girar 10s linear infinite;
+        }
+
+        /* =========================
+           BOTONES
+        ========================= */
+
+        .boton {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            background: #1DB954;
+
+            color: white;
+
+            padding: 15px;
+
+            margin: 12px auto;
+
+            width: 85%;
+
+            max-width: 320px;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-weight: bold;
+
+            font-size: 1rem;
+
+            transition: transform 0.2s;
+        }
+
+        .boton:active {
+            transform: scale(0.95);
+        }
+
+        /* Gradiente de Instagram */
+
+        .boton.ig {
+            background: linear-gradient(
+                45deg,
+                #f09433 0%,
+                #e6683c 25%,
+                #dc2743 50%,
+                #cc2366 75%,
+                #bc1888 100%
+            );
+        }
+
+        /* =========================
+           REPRODUCTOR
+        ========================= */
+
+        audio {
+            margin-bottom: 25px;
+            width: 85%;
+            max-width: 320px;
+        }
+
     </style>
 </head>
+
 <body>
-    <h2>EFRA & Beto Ramon</h2>
-    <h1>mientras tanto</h1>
-    
-    <!-- Aquí armamos el disco con el nuevo efecto -->
-    <div class="disco-container" id="disco">
-        <img src="portada.jpeg" alt="Portada Mientras Tanto" class="portada">
-        <div class="hoyo-centro"></div>
-        <div class="brillo-vinilo"></div>
+
+    <!-- =========================
+         PANTALLA DE ENTRADA
+    ========================= -->
+
+    <div id="mensajeEntrada">
+        Ah… llegaste.
     </div>
-    
+
+
+    <!-- =========================
+         CONTENIDO ORIGINAL
+    ========================= -->
+
+    <h2>EFRA & Beto Ramon</h2>
+
+    <h1>mientras tanto</h1>
+
+
+    <!-- DISCO -->
+
+    <div class="disco-container" id="disco">
+
+        <img
+            src="portada.jpeg"
+            alt="Portada Mientras Tanto"
+            class="portada"
+        >
+
+        <div class="hoyo-centro"></div>
+
+        <div class="brillo-vinilo"></div>
+
+    </div>
+
+
+    <!-- PREVIEW -->
+
     <p>Te regalo un preview:</p>
+
     <audio id="reproductor" controls>
-        <source src="preview.mp3" type="audio/mpeg">
+
+        <source
+            src="preview.mp3"
+            type="audio/mpeg"
+        >
+
     </audio>
 
-    <!-- Tus botones con los íconos reales y el texto corregido -->
-    <a href="https://open.spotify.com/track/6OxHmhvxjMebJfRRqI6Uqq" class="boton"><i class="fab fa-spotify fa-lg"></i> Escúchala completa en Spotify</a>
-    <a href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz" class="boton ig"><i class="fab fa-instagram fa-lg"></i> Sigue a EFRA en Instagram</a>
-    <a href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr" class="boton ig"><i class="fab fa-instagram fa-lg"></i> Sigue a Beto en Instagram</a>
+
+    <!-- SPOTIFY -->
+
+    <a
+        href="https://open.spotify.com/track/6OxHmhvxjMebJfRRqI6Uqq"
+        class="boton"
+    >
+
+        <i class="fab fa-spotify fa-lg"></i>
+
+        Escúchala completa en Spotify
+
+    </a>
+
+
+    <!-- INSTAGRAM EFRA -->
+
+    <a
+        href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz"
+        class="boton ig"
+    >
+
+        <i class="fab fa-instagram fa-lg"></i>
+
+        Sigue a EFRA en Instagram
+
+    </a>
+
+
+    <!-- INSTAGRAM BETO -->
+
+    <a
+        href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr"
+        class="boton ig"
+    >
+
+        <i class="fab fa-instagram fa-lg"></i>
+
+        Sigue a Beto en Instagram
+
+    </a>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
 
     <script>
+
         var audio = document.getElementById("reproductor");
+
         var disco = document.getElementById("disco");
 
-        audio.onplay = function() { disco.classList.add("girando"); };
-        audio.onpause = function() { disco.classList.remove("girando"); };
-        audio.onended = function() { disco.classList.remove("girando"); };
+
+        /* Cuando comienza el preview */
+
+        audio.onplay = function() {
+
+            disco.classList.add("girando");
+
+        };
+
+
+        /* Cuando se pausa */
+
+        audio.onpause = function() {
+
+            disco.classList.remove("girando");
+
+        };
+
+
+        /* Cuando termina */
+
+        audio.onended = function() {
+
+            disco.classList.remove("girando");
+
+        };
+
     </script>
+
 </body>
 </html>
