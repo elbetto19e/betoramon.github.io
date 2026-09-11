@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EFRA & Beto Ramon - Mientras Tanto</title>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -13,164 +12,413 @@
     })(window,document,'script','dataLayer','GTM-MMDW9XS2');</script>
     <!-- End Google Tag Manager -->
 
-    <!-- FontAwesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>mientras tanto - EFRA & Beto Ramon</title>
+
+    <!-- Vista previa al compartir -->
+    <meta property="og:title" content="mientras tanto - EFRA & Beto Ramon">
+    <meta property="og:description" content="Te regalo un preview.">
+    <meta property="og:image" content="https://elbetto19e.github.io/betoramon.github.io/portada.jpeg">
+    <meta property="og:url" content="https://elbetto19e.github.io/betoramon.github.io/">
+    <meta property="og:type" content="music.song">
+
+    <!-- Fuentes e iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
+
+        /* =========================
+           CONFIGURACIÓN GENERAL
+        ========================= */
+
         * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100%;
         }
 
         body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
-            padding: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 400px;
+            background-color: #111;
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
             text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .portada-container {
-            position: relative;
-            width: 240px;
-            height: 240px;
-            margin-bottom: 30px;
-        }
 
-        .portada {
+        /* =========================
+           MENSAJE DE ENTRADA
+        ========================= */
+
+        #mensajeEntrada {
+            position: fixed;
+            inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Vinilo animado de fondo */
-        .vinilo {
-            position: absolute;
-            top: 0;
-            right: -50px;
-            width: 240px;
-            height: 240px;
             background: #111;
-            border-radius: 50%;
-            border: 8px solid #222;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.8);
-            z-index: 1;
-            animation: girar 8s linear infinite;
-            animation-play-state: paused;
-        }
-
-        .vinilo::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            background: #e74c3c;
-            border-radius: 50%;
-            border: 4px dashed #fff;
-        }
-
-        .portada-container:hover .vinilo {
-            animation-play-state: running;
-            transform: translateX(40px);
-            transition: transform 0.5s ease;
-        }
-
-        @keyframes girar {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-
-        .artista {
-            font-size: 1rem;
-            color: #a0a0a0;
-            margin-bottom: 30px;
-        }
-
-        /* Sistema de retraso de 4 segundos para los enlaces */
-        .links-container {
-            width: 100%;
+            color: #fff;
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: aparecer 0.8s ease forwards;
-            animation-delay: 4s;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 1;
+            animation: desaparecerMensaje 2.8s ease-in-out forwards;
+            pointer-events: none;
         }
 
-        @keyframes aparecer {
+        @keyframes desaparecerMensaje {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            65% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+
+        /* =========================
+           CONTENIDO PRINCIPAL
+        ========================= */
+
+        #contenido {
+            opacity: 0;
+            transform: translateY(15px);
+            animation: contenidoEntrada 0.9s ease-out 2.2s forwards;
+        }
+
+        @keyframes contenidoEntrada {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .boton {
+
+        /* =========================
+           TEXTOS
+        ========================= */
+
+        h2 {
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #bbb;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+
+        /* =========================
+           DISCO / PORTADA
+        ========================= */
+
+        .disco-container {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 25px auto;
+            border-radius: 50%;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.9);
+            border: 8px solid #050505;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        img.portada {
             width: 100%;
-            padding: 14px 20px;
-            border-radius: 30px;
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 600;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+
+        /* =========================
+           HOYO DEL VINILO
+        ========================= */
+
+        .hoyo-centro {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 15px;
+            height: 15px;
+            background-color: #111;
+            border-radius: 50%;
+            border: 2px solid #222;
+            z-index: 2;
+        }
+
+
+        /* =========================
+           SURCOS Y BRILLO
+        ========================= */
+
+        .brillo-vinilo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background:
+                conic-gradient(
+                    from 45deg,
+                    transparent 0deg,
+                    rgba(255,255,255,0.15) 45deg,
+                    transparent 90deg,
+                    transparent 180deg,
+                    rgba(255,255,255,0.15) 225deg,
+                    transparent 270deg
+                ),
+                repeating-radial-gradient(
+                    circle,
+                    transparent,
+                    transparent 3px,
+                    rgba(0,0,0,0.4) 4px,
+                    transparent 5px
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+
+        /* =========================
+           ANIMACIÓN DEL DISCO
+        ========================= */
+
+        @keyframes girar {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .girando {
+            animation: girar 10s linear infinite;
+        }
+
+
+        /* =========================
+           TEXTO PREVIEW
+        ========================= */
+
+        p {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: #ccc;
             font-size: 0.95rem;
+        }
+
+
+        /* =========================
+           AUDIO
+        ========================= */
+
+        audio {
+            display: block;
+            width: 85%;
+            max-width: 320px;
+            margin: 0 auto 25px auto;
+        }
+
+
+        /* =========================
+           CONTENEDOR DE BOTONES (APARICIÓN RETARDADA)
+        ========================= */
+
+        .botones-streaming {
+            width: 100%;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: aparecerBotones 0.8s ease-out 4s forwards;
+            margin-bottom: 20px;
+        }
+
+        @keyframes aparecerBotones {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           BOTONES GENERALES
+        ========================= */
+
+        .boton {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s ease, filter 0.2s ease;
+            gap: 10px;
+            background: #1DB954;
+            color: white;
+            padding: 15px;
+            margin: 12px auto;
+            width: 85%;
+            max-width: 320px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .boton:active {
+            transform: scale(0.95);
         }
 
         .boton:hover {
-            transform: scale(1.02);
-            filter: brightness(1.1);
+            opacity: 0.9;
         }
 
-        .spotify {
-            background-color: #1DB954;
+        /* Estilo específico para Apple Music */
+        .boton.apple {
+            background: #fa243c;
         }
 
-        .apple-music {
-            background-color: #fa243c;
+
+        /* =========================
+           INSTAGRAM
+        ========================= */
+
+        .boton.ig {
+            background:
+                linear-gradient(
+                    45deg,
+                    #f09433 0%,
+                    #e6683c 25%,
+                    #dc2743 50%,
+                    #cc2366 75%,
+                    #bc1888 100%
+                );
         }
 
-        .footer {
-            margin-top: 40px;
+
+        /* =========================
+           SECCIÓN REDES
+        ========================= */
+
+        .redes {
+            width: 100%;
+            max-width: 350px;
+            margin: 30px auto 20px auto;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: aparecerRedes 0.8s ease-out 4.4s forwards;
+        }
+
+        .redes h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #aaa;
+            margin: 0 0 20px 0;
+        }
+
+        .red-social {
+            margin-bottom: 25px;
+        }
+
+        .red-social span {
+            display: block;
             font-size: 0.75rem;
-            color: #555555;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            color: #888;
+            margin-bottom: 8px;
         }
+
+        .red-social .boton {
+            margin: 0 auto;
+        }
+
+        @keyframes aparecerRedes {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================
+           TEXTURA SUTIL DEL FONDO
+        ========================= */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            z-index: -1;
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E");
+        }
+
+
+        /* =========================
+           CELULARES
+        ========================= */
+
+        @media (max-width: 480px) {
+            body {
+                padding: 18px 15px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.05rem;
+            }
+            .disco-container {
+                width: 235px;
+                height: 235px;
+            }
+            .boton {
+                width: 90%;
+            }
+        }
+
     </style>
 </head>
+
 <body>
 
     <!-- Google Tag Manager (noscript) -->
@@ -178,40 +426,173 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div class="container">
-        
-        <!-- Portada y Vinilo -->
-        <div class="portada-container">
-            <div class="vinilo"></div>
-            <!-- Reemplaza el src con el link de tu imagen oficial si lo necesitas -->
-            <img src="portada.jpg" alt="Mientras Tanto - EFRA & Beto Ramon" class="portada" onerror="this.src='https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80'">
+    <!-- =========================
+         MENSAJE INICIAL
+    ========================= -->
+
+    <div id="mensajeEntrada">
+        Ah… llegaste.
+    </div>
+
+
+    <!-- =========================
+         CONTENIDO
+    ========================= -->
+
+    <main id="contenido">
+
+        <!-- ARTISTA -->
+        <h2>
+            EFRA & Beto Ramon
+        </h2>
+
+        <!-- CANCIÓN -->
+        <h1>
+            mientras tanto
+        </h1>
+
+        <!-- =========================
+             VINILO
+        ========================= -->
+
+        <div
+            class="disco-container"
+            id="disco"
+        >
+            <img
+                src="portada.jpeg"
+                alt="Portada Mientras Tanto"
+                class="portada"
+            >
+            <div class="hoyo-centro"></div>
+            <div class="brillo-vinilo"></div>
         </div>
 
-        <h1>Mientras Tanto</h1>
-        <p class="artista">EFRA & Beto Ramon</p>
 
-        <!-- Botones de Streaming (Con aparicion diferida de 4 segundos) -->
-        <div class="links-container">
-            
+        <!-- =========================
+             PREVIEW
+        ========================= -->
+
+        <p>
+            Te regalo un preview:
+        </p>
+
+        <audio
+            id="reproductor"
+            controls
+            preload="metadata"
+        >
+            <source
+                src="preview.mp3"
+                type="audio/mpeg"
+            >
+            Tu navegador no soporta el reproductor de audio.
+        </audio>
+
+
+        <!-- =========================
+             BOTONES DE STREAMING
+        ========================= -->
+
+        <div class="botones-streaming">
+
             <!-- SPOTIFY -->
-            <a href="https://open.spotify.com" class="boton spotify" target="_blank" rel="noopener noreferrer">
+            <a
+                href="https://open.spotify.com/track/6OxHmhvxjMebJfRRqI6Uqq"
+                class="boton"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 <i class="fab fa-spotify fa-lg"></i>
-                Escúchala en Spotify
+                Escúchala completa en Spotify
             </a>
 
             <!-- APPLE MUSIC -->
-            <a href="https://music.apple.com/us/album/mientras-tanto/6806528681?i=6806528682" class="boton apple-music" target="_blank" rel="noopener noreferrer">
+            <a
+                href="https://music.apple.com/us/album/mientras-tanto/6806528681?i=6806528682"
+                class="boton apple"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
                 <i class="fab fa-apple fa-lg"></i>
                 Escúchala en Apple Music
             </a>
 
         </div>
 
-        <div class="footer">
-            <p>© 2026 BETO RAMON & EFRA</p>
-        </div>
 
-    </div>
+        <!-- =========================
+             REDES SOCIALES
+        ========================= -->
+
+        <section class="redes">
+
+            <h3>
+                Síguenos en nuestras redes
+            </h3>
+
+            <!-- EFRA -->
+            <div class="red-social">
+                <span>
+                    EFRA
+                </span>
+                <a
+                    href="https://www.instagram.com/efra_larx?stkn=cXFhaGg2Z3BlcDAz"
+                    class="boton ig"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <i class="fab fa-instagram fa-lg"></i>
+                    Instagram
+                </a>
+            </div>
+
+            <!-- BETO -->
+            <div class="red-social">
+                <span>
+                    BETO
+                </span>
+                <a
+                    href="https://www.instagram.com/elbetto19?stkn=YjA1Yng3Zng5bW9q&utm_source=qr"
+                    class="boton ig"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <i class="fab fa-instagram fa-lg"></i>
+                    Instagram
+                </a>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+        const audio = document.getElementById("reproductor");
+        const disco = document.getElementById("disco");
+
+        /* PLAY */
+        audio.addEventListener("play", function() {
+            disco.classList.add("girando");
+        });
+
+        /* PAUSE */
+        audio.addEventListener("pause", function() {
+            disco.classList.remove("girando");
+        });
+
+        /* TERMINA */
+        audio.addEventListener("ended", function() {
+            disco.classList.remove("girando");
+        });
+
+    </script>
 
 </body>
 </html>
